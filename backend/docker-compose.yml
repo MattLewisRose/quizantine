@@ -18,10 +18,10 @@ services:
   webserver:
     image: nginx:alpine
     container_name: quizantine-webservers
-    working_dir: /application/backend
+    working_dir: /application
     volumes:
-      - .:/application/backend
-      - ./dockerfiles/backend/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - .:/application
+      - ./dockerfiles/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     environment:
       - VIRTUAL_HOST=quizantine.local
     ports:
@@ -30,7 +30,7 @@ services:
   php-fpm:
     build: dockerfiles/php-fpm
     container_name: quizantine-php
-    working_dir: /application/backend
+    working_dir: /application
     volumes:
       - .:/application
       - ./dockerfiles/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
