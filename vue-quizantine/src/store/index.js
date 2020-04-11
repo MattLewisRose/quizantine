@@ -18,11 +18,15 @@ export default new Vuex.Store({
       rounds: {
 
       }
-    }
+    },
+    baseURL: "http://localhost:8014"
   },
   getters: {
     getQuiz: state => {
       return state.quiz
+    },
+    getBaseUrl: state => {
+      return state.baseURL
     }
   },
   mutations: {
@@ -41,6 +45,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    hostQuiz() {
+      
+    }
   },
   modules: {
   }

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Main from '../views/Main.vue'
 import Host from '../views/Host/Host.vue'
+import BuildQuiz from '../views/Host/BuildQuiz.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
 		path: '/host',
 		name: 'Host',
 		component: Host
+	},
+	{
+		path: '/buildQuiz',
+		name: 'Build Quiz',
+		component: BuildQuiz
 	}
 ]
 

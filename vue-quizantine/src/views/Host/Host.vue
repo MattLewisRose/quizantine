@@ -33,9 +33,11 @@
             <br/>
             <div>
                 <button type="submit">Continue</button>
-                Selected: {{  rounds }}
             </div>
         </form>
+        <div v-if="error" style="color: red">
+            {{ msg }}
+        </div>
     </div>
 </template>
 
@@ -52,13 +54,31 @@
             return {
                name: '',
                rounds: '',
-               
+               error: false,
+               msg: ""
             }
+        },
+        mounted() {
+            
         },
         methods: {
             next() {
-                this.$store.commit('startNewQuiz', {name: this.name, numRounds: this.rounds})
-                console.log(this.$store.getters.getQuiz)
+                
+                if(this.name !== '' && this.rounds !== '') {
+                    this.error = false
+                    this.$store.commit('startNewQuiz', {name: this.name, numRounds: this.rounds}).then(response => {
+                        this.$router.push({name: "Build Quiz"})
+                    })
+                } else {
+                    this.error = true
+                    if(this.name === '') {
+                        this.msg = "Name cannot be blank."
+                    } else {
+                        this.msg = "Please select a number of rounds"
+                    }
+
+                }
+                
             }
         }
     }
