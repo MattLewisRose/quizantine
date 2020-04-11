@@ -66,8 +66,10 @@
                 
                 if(this.name !== '' && this.rounds !== '') {
                     this.error = false
-                    this.$store.commit('startNewQuiz', {name: this.name, numRounds: this.rounds}).then(response => {
-                        this.$router.push({name: "Build Quiz"})
+                    let rounds = this.rounds
+                    let name = this.name
+                    this.$store.commit('startNewQuiz').then(response => {
+                        this.$router.push({name: "Build Quiz", params: {rounds: rounds}});
                     })
                 } else {
                     this.error = true
